@@ -64,3 +64,17 @@ wasm_can_handle_container (libcrun_container_t *container, libcrun_error_t *err 
 
   return 0;
 }
+
+int
+can_handle_multiple_wasm (libcrun_container_t *container, libcrun_error_t *err arg_unused)
+{
+  const char *annotation;
+
+  annotation = find_annotation (container, "module.wasm.image/multiple");
+  if (annotation)
+    {
+	  return strcmp (annotation, "true") == 0 ? 1 : 0;
+	}
+
+  return 0;
+}
